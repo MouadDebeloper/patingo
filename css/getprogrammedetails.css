@@ -1,0 +1,51 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.test1
+{
+    margin : 3rem;
+}   
+
+
+
+.btnadd {
+    margin: 1rem;
+    font-size: var(--btn-font);
+}
+
+.td .btn{
+    font-size: var(--btn-font);
+}
+.btn:hover{
+    transform: translateY(-.5rem);
+    transition: all .4s;
+    filter: drop-shadow(.5em .5em .5em rgb(136, 129, 129));
+}
+
+.myinputelement{
+    display: flex;
+    flex-direction: column;
+}
+
+.table-striped tbody tr:hover{
+    transform: translateY(-.5rem);
+    transition: all .4s;
+    filter: drop-shadow(.3em .3em .3em rgb(136, 129, 129));
+}
+
+
+.heading{
+
+    display: flex;
+    justify-content:center;
+    align-items :center;
+    font-size: var(--heading-font);
+}
+
+:root {
+    --heading-font:3.5rem;
+    --btn-font:5rem;
+}
