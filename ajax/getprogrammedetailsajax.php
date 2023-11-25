@@ -28,12 +28,27 @@ if($action=="getdepartments"){
     
     $dbo = new Database();
     $pdo = new Department();
-
     $result = $pdo->getAllDepartments($dbo);
     $rv = json_encode($result);
     echo($rv);
     exit();
     
+}
+    /*code:code,title:title,nos:nos,department:department,gl:gl,tl:tl,action1:"saveprogrammedetails"*/
+
+if($action=="saveprogrammedetails"){
+    
+    $code = $_POST['code'];
+    $title = $_POST['title'];
+    $nos = $_POST['nos'];
+    $department = $_POST['department'];
+    $gl = $_POST['gl'];
+    $tl = $_POST['tl'];
+    $dbo = new Database();
+    $pdo = new Programme();
+    $rv = $pdo->createNewProgamme($dbo,$code,$title,$nos,$gl,$tl,$department); 
+    echo json_encode($rv);
+    exit();
 }
 
 

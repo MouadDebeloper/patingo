@@ -90,6 +90,33 @@ function loadDepartments(){
     })
 }
 
+function pushtotheserver(code,title,nos,department,gl,tl){
+
+    $.ajax({
+        url: "../ajax/getprogrammedetailsajax.php"  ,
+        type: "POST",
+        dataType: "JSON",
+        data:{code:code,title:title,nos:nos,department:department,gl:gl,tl:tl,action1:"saveprogrammedetails"},
+        beforeSend:function(){
+
+        },
+        success: function(result){
+            let x = JSON.stringify(result);
+            if(x=="0"){
+                alert("not inserted");
+            }
+            else{
+                alert("Inserted");
+            }
+        },
+        error: function(){
+            alert("Error");
+        }
+
+    })
+}
+
+
 $(function(){ 
     getprogrammedetails();
     loadDepartments();
@@ -99,20 +126,23 @@ $(function(){
     });
 
     $(document).on("click","#btnSave",function(){
-        let code = ("#txtcode").val();
-        let title = ("#txttitle").val();
-        let nos = ("#txtnos").val();
-        let department = ("#select_department").val();
-        let gl = ("#txtgl").val();   
-        let tl = ("#txttl").val();  
-        if(code!='' && title!='' && nos!=''&& department>=0 && gl!='' && tl!=''){
-                alert("good");
+        let code = $("#txtcode").val();
+        let title = $("#txttitle").val();
+        let nos = $("#txtnos").val();
+        let department = $("#select_department").val();
+        let gl = $("#txtgl").val();   
+        let tl = $("#txttl").val();  
+        if(code!='' && title!='' && nos>0 && department>=0 && gl!='' && tl!=''){
+                pushtotheserver(code,title,nos,department,gl,tl);
         }
         else {
-                 alert("not good");
+                alert("Please fill all the inputs");
         }
     });
 
+
+
+ 
 
 
 
