@@ -5,6 +5,7 @@ $root = $_SERVER["DOCUMENT_ROOT"];
 
 include_once "../database/database.php";
 include_once "../database/Programme.php";
+include_once "../database/department.php";
 
 $p = $_POST["a"];
 $q = $_POST["b"];
@@ -21,6 +22,21 @@ if($action=="getprogrammedetails"){
     exit();
     
 }
+
+
+if($action=="getdepartments"){
+    
+    $dbo = new Database();
+    $pdo = new Department();
+
+    $result = $pdo->getAllDepartments($dbo);
+    $rv = json_encode($result);
+    echo($rv);
+    exit();
+    
+}
+
+
 
 ?>
 

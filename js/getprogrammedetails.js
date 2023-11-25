@@ -33,36 +33,15 @@ function getHtml(result){
     return x;
 
 }
-
-
-
-/*
-pd.id AS pid,
-        pd.code AS pcode,
-        pd.title AS ptitle,
-        pd.np_of_sem AS nos,
-        pd.graduation_level AS gl,
-        pd.technical_level AS tl,
-        pd.department_id AS did,
-        dd.title AS dtitle,
-        dd.code AS dcode
-
-
-    let d = `
-    
-  
-
-        </tbody>
-    </table>
-    `;
-
+function getDepartmentHtml(result){
+    let x =``;
+    x=x+`<option value=-1>SELECT ONE</option>`;
+    let i=0;
+    for(i=0;i<result.length;i++){
+        x = x + `<option value=${result[i].did}>${result[i].dtitle}</option>`
+    }
     return x;
 }
-
-*/
-
-
-
 
 
 
@@ -96,12 +75,13 @@ function loadDepartments(){
         url: "../ajax/getprogrammedetailsajax.php"  ,
         type: "POST",
         dataType: "JSON",
-        data:{a:"21",b:"flower",action1:"getprogrammedetails"},
+        data:{a:"21",b:"flower",action1:"getdepartments"},
         beforeSend:function(){
 
         },
         success: function(result){
-      
+            let departmentsHtmlContent = getDepartmentHtml(result);
+            $("#select_department").html(departmentsHtmlContent);
         },
         error: function(){
             alert("Error");
@@ -113,10 +93,29 @@ function loadDepartments(){
 $(function(){ 
     getprogrammedetails();
     loadDepartments();
+
     $(document).on("click","#btnAddNew",function(){
            $("#mdlpg").modal('show');
-           
     });
+
+    $(document).on("click","#btnSave",function(){
+        let code = ("#txtcode").val();
+        let title = ("#txttitle").val();
+        let nos = ("#txtnos").val();
+        let department = ("#select_department").val();
+        let gl = ("#txtgl").val();   
+        let tl = ("#txttl").val();  
+        if(code!='' && title!='' && nos!=''&& department>=0 && gl!='' && tl!=''){
+                alert("good");
+        }
+        else {
+                 alert("not good");
+        }
+    });
+
+
+
+
 }); 
 
 

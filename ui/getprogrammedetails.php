@@ -29,34 +29,32 @@
                     <div class="modal-body">
                         <div class="myinputelement">
                             <label>CODE</label>
-                            <input type="text">
+                            <input id="txtcode" type="text">
                         <div>
                         <div class="myinputelement">
                             <label>Title</label>
-                            <input type="text">
+                            <input id="txttitle" type="text">
                         <div>
                         <div class="myinputelement">
                             <label>Number Of Semester</label>
-                            <input type="text">
+                            <input id="txtnos" type="text">
                         <div>
                         <div class="myinputelement">
                             <label>Department</label>
                             <select id="select_department">
-                                <option val> NONE </option>
-                            
                             </select>
                         <div>
                         <div class="myinputelement">
                             <label>Graduate Level</label>
-                            <input type="text">
+                            <input  id="txtgl" type="text">
                         <div>
                         <div class="myinputelement">
                             <label>Technical Level</label>
-                            <input type="text">
+                            <input  id="txttl" type="text">
                         <div>
                     </div>
                     <div class="modal-footer">
-                    <button class="btn btn-success">SAVE</button>
+                    <button class="btn btn-success" id="btnSave" >SAVE</button>
                     <button class="btn btn-danger"  data-bs-dismiss="modal">CANCEL</button>
                     </div>
                 </div>
