@@ -94,7 +94,7 @@ class Programme {
     }
 
   
-    public function updateProgrammeDetails($dbo, $id, $code, $title, $nos, $gl, $tl, $did) {
+    public function updateProgrammeDetails($dbo, $id) {
         $cmd = "UPDATE programme_details 
                 SET
                 code = :code,
@@ -120,6 +120,23 @@ class Programme {
     
             // Assuming you want to return something upon successful execution
             
+            return 1;
+        } catch (Exception $ee) {
+            // Handle the exception or return an error code
+            return 0;
+        }
+    }
+
+    public function deleteProgramme($dbo,$pid){
+        $cmd = "DELETE FROM programme_details
+        WHERE id = :id";
+        try {
+            
+            $statement = $dbo->conn->prepare($cmd);
+            $statement->execute([
+                ":id" => $pid
+            ]);
+            // Assuming you want to return something upon successful execution
             return 1;
         } catch (Exception $ee) {
             // Handle the exception or return an error code

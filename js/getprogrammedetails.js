@@ -140,7 +140,6 @@ function  updateprogramme(id,code,title,nos,department,gl,tl) {
         },
         success: function(result){
             let x = JSON.stringify(result);
-            alert(x);
             if(x=="0"){
             }
             else{
@@ -164,6 +163,33 @@ function  updateprogramme(id,code,title,nos,department,gl,tl) {
     });
 }
 
+function removeprogramme(id){
+    $.ajax({
+        url: "../ajax/getprogrammedetailsajax.php"  ,
+        type: "POST",
+        dataType: "JSON",
+        data:{id:id,action1:"deleteprogrammedetails"},
+        beforeSend:function(){  
+            
+        },
+        success: function(result){
+            let x = JSON.stringify(result);
+            if(x=="0"){
+                alert("Programme Not Deleted");
+            }
+            else{
+                alert("Programme Deleted");
+                               
+                getprogrammedetails();
+
+            }
+        },
+        error: function(){
+            alert("Error");
+        }
+
+    });
+}
 
 $(function(){ 
 
@@ -215,7 +241,20 @@ $(function(){
     });
 
 
- 
+    $(document).on("click",".btnDelete",function(){
+            //let details = $(this).data("details")["pid"]    ;
+
+            let y = confirm("Are you sure ?");
+            alert(y);
+            if(y==true){
+                removeprogramme($(this).data("details")["pid"]);
+             }else{
+
+            }
+          
+
+    });
+
 
 
 

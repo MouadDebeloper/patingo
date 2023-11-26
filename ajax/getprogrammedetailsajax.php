@@ -51,7 +51,7 @@ if($action=="saveprogrammedetails"){
 }
 
 if($action=="editprogrammedetails"){
-    $id   = $_POST['pid'];
+    $id   = $_POST['id'];
     $code = $_POST['code'];
     $title = $_POST['title'];
     $nos = $_POST['nos'];
@@ -65,6 +65,16 @@ if($action=="editprogrammedetails"){
     exit();
 }
 
+
+if($action=="deleteprogrammedetails"){
+
+    $dbo = new Database();
+    $pdo = new Programme();
+    $id   = $_POST['id'];
+    $rv = $pdo->deleteProgramme($dbo,$id);
+    echo json_encode($rv);
+    exit();
+}
 
 
 
