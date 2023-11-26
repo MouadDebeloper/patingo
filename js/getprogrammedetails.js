@@ -265,15 +265,7 @@ $(function(){
 
 
     $(document).on("click",".btnDelete",function(){
-            //let details = $(this).data("details")["pid"]    ;
-
-            let y = confirm("");
-            if(y==true){
-             }else{
-
-            }
-
-
+            //let details = $(this).data("details")["pid"]    
 
             Swal.fire({
                 title: 'Deleting Programme',
