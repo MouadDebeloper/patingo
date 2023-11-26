@@ -15,7 +15,7 @@ if($action=="getprogrammedetails"){
     
     $dbo = new Database();
     $pdo = new Programme();
-
+    
     $result = $pdo->getAllProgrammes($dbo);
     $rv = json_encode($result);
     echo($rv);
@@ -32,9 +32,8 @@ if($action=="getdepartments"){
     $rv = json_encode($result);
     echo($rv);
     exit();
-    
+
 }
-    /*code:code,title:title,nos:nos,department:department,gl:gl,tl:tl,action1:"saveprogrammedetails"*/
 
 if($action=="saveprogrammedetails"){
     

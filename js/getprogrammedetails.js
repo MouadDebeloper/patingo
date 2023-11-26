@@ -23,7 +23,7 @@ function getHtml(result){
         <td>${result[i]['nos']}</td>
         <td>${result[i]['gl']}</td>
         <td>${result[i]['tl']}</td>
-        <td><button class="btn btn-primary">EDIT</button></td>
+        <td><button class="btn btn-primary btnEdit" data-details='${JSON.stringify(result[i])}'>EDIT</button></td>
         <td><button class="btn btn-danger">DELETE</button></td>
 
         </tr>`;
@@ -90,6 +90,8 @@ function loadDepartments(){
     })
 }
 
+
+
 function pushtotheserver(code,title,nos,department,gl,tl){
 
     $.ajax({
@@ -103,10 +105,20 @@ function pushtotheserver(code,title,nos,department,gl,tl){
         success: function(result){
             let x = JSON.stringify(result);
             if(x=="0"){
-                alert("not inserted");
+   
             }
             else{
-                alert("Inserted");
+                alert("Programme Added");
+                $("#txtcode").val("");
+                $("#txttitle").val("");
+                $("#txtnos").val("");
+                $("#select_department").val("");
+                $("#txtgl").val("");   
+                $("#txttl").val("");
+                $("#mdlpg").modal('toggle');
+                
+                getprogrammedetails();
+
             }
         },
         error: function(){
@@ -118,11 +130,14 @@ function pushtotheserver(code,title,nos,department,gl,tl){
 
 
 $(function(){ 
+
     getprogrammedetails();
+
     loadDepartments();
 
     $(document).on("click","#btnAddNew",function(){
            $("#mdlpg").modal('show');
+           $("#flag").val("NEW")
     });
 
     $(document).on("click","#btnSave",function(){
@@ -132,14 +147,37 @@ $(function(){
         let department = $("#select_department").val();
         let gl = $("#txtgl").val();   
         let tl = $("#txttl").val();  
+        let id = $("#pid").val();
         if(code!='' && title!='' && nos>0 && department>=0 && gl!='' && tl!=''){
+            if($("#flag").val()=="NEW")
+            {
                 pushtotheserver(code,title,nos,department,gl,tl);
+            }else{
+                updateprogramme(id,code,title,nos,department,gl,tl);
+            }
+                
         }
         else {
                 alert("Please fill all the inputs");
         }
     });
 
+    $(document).on("click",".btnEdit",function(){
+
+
+        $("#flag").val("Edit")
+        $("#mdlpg").modal('show');
+        let details = $(this).data("details");
+        $("#txtcode").val(details["pcode"]);
+        $("#txttitle").val(details["ptitle"]);
+        $("#txtnos").val(details["nos"]);
+        $("#select_department").val(details["dcode"]);
+        $("#txtgl").val(details["gl"]);
+        $("#txttl").val(details["tl"]);
+
+
+
+    });
 
 
  

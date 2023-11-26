@@ -52,6 +52,8 @@
                             <label>Technical Level</label>
                             <input  id="txttl" type="text">
                         <div>
+                        <div id="flag" style="display: none;"></div>
+                        <div id="pid" style="display: none;"></div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success" id="btnSave" >SAVE</button>

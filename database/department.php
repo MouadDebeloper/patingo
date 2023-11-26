@@ -18,6 +18,7 @@ class Department {
         $rv = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $rv; 
     }
+    
 }
 
 ?>
