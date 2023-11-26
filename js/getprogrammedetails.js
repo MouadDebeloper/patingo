@@ -245,7 +245,6 @@ $(function(){
             //let details = $(this).data("details")["pid"]    ;
 
             let y = confirm("Are you sure ?");
-            alert(y);
             if(y==true){
                 removeprogramme($(this).data("details")["pid"]);
              }else{
