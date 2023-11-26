@@ -24,7 +24,7 @@ function getHtml(result){
         <td>${result[i]['gl']}</td>
         <td>${result[i]['tl']}</td>
         <td><button class="btn btn-primary btnEdit" data-details='${JSON.stringify(result[i])}'>EDIT</button></td>
-        <td><button class="btn btn-danger">DELETE</button></td>
+        <td><button class="btn btn-danger btnDelete"  data-details='${JSON.stringify(result[i])}'>DELETE</button></td>
 
         </tr>`;
     }
@@ -128,6 +128,42 @@ function pushtotheserver(code,title,nos,department,gl,tl){
     })
 }
 
+function  updateprogramme(id,code,title,nos,department,gl,tl) {
+
+    $.ajax({
+        url: "../ajax/getprogrammedetailsajax.php"  ,
+        type: "POST",
+        dataType: "JSON",
+        data:{id:id,code:code,title:title,nos:nos,department:department,gl:gl,tl:tl,action1:"editprogrammedetails"},
+        beforeSend:function(){  
+
+        },
+        success: function(result){
+            let x = JSON.stringify(result);
+            alert(x);
+            if(x=="0"){
+            }
+            else{
+                alert("Programme Edited");
+                $("#txtcode").val("");
+                $("#txttitle").val("");
+                $("#txtnos").val("");
+                $("#select_department").val("");
+                $("#txtgl").val("");   
+                $("#txttl").val("");
+                $("#mdlpg").modal('toggle');
+                
+                getprogrammedetails();
+
+            }
+        },
+        error: function(){
+            alert("Error");
+        }
+
+    });
+}
+
 
 $(function(){ 
 
@@ -174,8 +210,7 @@ $(function(){
         $("#select_department").val(details["dcode"]);
         $("#txtgl").val(details["gl"]);
         $("#txttl").val(details["tl"]);
-
-
+        $("#pid").val(details["pid"]);
 
     });
 

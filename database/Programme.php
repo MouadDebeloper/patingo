@@ -88,7 +88,7 @@ class Programme {
         $statement = $dbo->conn->prepare($cmd);
         $statement->execute([":code"=>$code]);
         $rv = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $rv; 
+        return $rv;     
 
 
     }

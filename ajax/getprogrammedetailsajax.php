@@ -50,6 +50,22 @@ if($action=="saveprogrammedetails"){
     exit();
 }
 
+if($action=="editprogrammedetails"){
+    $id   = $_POST['pid'];
+    $code = $_POST['code'];
+    $title = $_POST['title'];
+    $nos = $_POST['nos'];
+    $department = $_POST['department'];
+    $gl = $_POST['gl'];
+    $tl = $_POST['tl'];
+    $dbo = new Database();
+    $pdo = new Programme();
+    $rv = $pdo->updateProgrammeDetails($dbo,$id,$code,$title,$nos,$gl,$tl,$department); 
+    echo json_encode($rv);
+    exit();
+}
+
+
 
 
 ?>
