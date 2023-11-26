@@ -16,10 +16,6 @@ function showErrorAlert(message) {
 }
 
 
-
-
-
-
 function getHtml(result){
     
     let x = ``;
@@ -54,15 +50,20 @@ function getHtml(result){
     return x;
 
 }
+
+
+
+
 function getDepartmentHtml(result){
     let x =``;
     x=x+`<option value=-1>SELECT ONE</option>`;
     let i=0;
     for(i=0;i<result.length;i++){
-        x = x + `<option value=${result[i].did}>${result[i].dtitle}</option>`
+             x = x + `<option value=${result[i].did}>${result[i].dtitle}</option>`;
     }
     return x;
 }
+
 
 
 
@@ -252,11 +253,14 @@ $(function(){
 
         $("#flag").val("Edit")
         $("#mdlpg").modal('show');
+
+
         let details = $(this).data("details");
+
         $("#txtcode").val(details["pcode"]);
         $("#txttitle").val(details["ptitle"]);
         $("#txtnos").val(details["nos"]);
-        $("#select_department").val(details["dcode"]);
+        $("#select_department").val(details["did"]);
         $("#txtgl").val(details["gl"]);
         $("#txttl").val(details["tl"]);
         $("#pid").val(details["pid"]);
