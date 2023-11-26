@@ -94,7 +94,7 @@ class Programme {
     }
 
   
-    public function updateProgrammeDetails($dbo, $id) {
+    public function updateProgrammeDetails($dbo,$id,$code,$title,$nos,$gl,$tl,$did) {
         $cmd = "UPDATE programme_details 
                 SET
                 code = :code,

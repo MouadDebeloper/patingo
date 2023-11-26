@@ -1,3 +1,24 @@
+function showSuccessAlert(message) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: message,
+        timer: 2000, // Display alert for 2 seconds
+        showConfirmButton: false
+    });
+}
+function showErrorAlert(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: message
+    });
+}
+
+
+
+
+
 
 function getHtml(result){
     
@@ -62,7 +83,7 @@ function getprogrammedetails(){
             $("#contentdiv").html(htmlContent);
         },
         error: function(){
-            alert("Error");
+            showErrorAlert("Error");
         }
 
     })
@@ -84,7 +105,7 @@ function loadDepartments(){
             $("#select_department").html(departmentsHtmlContent);
         },
         error: function(){
-            alert("Error");
+            showErrorAlert("Error please contact administrator");
         }
 
     })
@@ -108,7 +129,7 @@ function pushtotheserver(code,title,nos,department,gl,tl){
    
             }
             else{
-                alert("Programme Added");
+                showSuccessAlert("Programme Added");
                 $("#txtcode").val("");
                 $("#txttitle").val("");
                 $("#txtnos").val("");
@@ -122,7 +143,7 @@ function pushtotheserver(code,title,nos,department,gl,tl){
             }
         },
         error: function(){
-            alert("Error");
+            showErrorAlert("Error");
         }
 
     })
@@ -141,9 +162,10 @@ function  updateprogramme(id,code,title,nos,department,gl,tl) {
         success: function(result){
             let x = JSON.stringify(result);
             if(x=="0"){
+                showErrorAlert("Plase check all the fields");
             }
             else{
-                alert("Programme Edited");
+                showSuccessAlert("Programme Edited");
                 $("#txtcode").val("");
                 $("#txttitle").val("");
                 $("#txtnos").val("");
@@ -157,7 +179,7 @@ function  updateprogramme(id,code,title,nos,department,gl,tl) {
             }
         },
         error: function(){
-            alert("Error");
+            showErrorAlert("Error");
         }
 
     });
@@ -175,23 +197,24 @@ function removeprogramme(id){
         success: function(result){
             let x = JSON.stringify(result);
             if(x=="0"){
-                alert("Programme Not Deleted");
+                showErrorAlert("Programme Not Deleted");
             }
             else{
-                alert("Programme Deleted");
+                showSuccessAlert("Programme Deleted");
                                
                 getprogrammedetails();
 
             }
         },
         error: function(){
-            alert("Error");
+            showErrorAlert("Error");
         }
 
     });
 }
 
 $(function(){ 
+
 
     getprogrammedetails();
 
@@ -220,7 +243,7 @@ $(function(){
                 
         }
         else {
-                alert("Please fill all the inputs");
+            showErrorAlert("Please fill all the inputs");
         }
     });
 
@@ -244,12 +267,35 @@ $(function(){
     $(document).on("click",".btnDelete",function(){
             //let details = $(this).data("details")["pid"]    ;
 
-            let y = confirm("Are you sure ?");
+            let y = confirm("");
             if(y==true){
-                removeprogramme($(this).data("details")["pid"]);
              }else{
 
             }
+
+
+
+            Swal.fire({
+                title: 'Deleting Programme',
+                text: 'Are you sure ?',
+                icon: 'warning', // You can use 'info', 'success', 'warning', 'error', or 'question'
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                reverseButtons: true, // Swap the positions of the confirm and cancel buttons
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // The user clicked the confirm button
+                    removeprogramme($(this).data("details")["pid"]);
+                    Swal.fire('Confirmed', 'You clicked the confirm button!', 'success');
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // The user clicked the cancel button
+                    //Swal.fire('Cancelled', 'You clicked the cancel button!', 'error');
+                }
+            });
+            
           
 
     });
