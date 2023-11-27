@@ -10,10 +10,13 @@ include_once "../database/department.php";
 $pdo = new Database();
 $pg = new Programme;
 
+
 $result = $pg->getAllProgrammes($pdo);
 
 
 $json_response = json_encode($result);
 echo $json_response;
+
+
 
 ?>
