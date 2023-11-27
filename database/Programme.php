@@ -23,6 +23,7 @@ class Programme {
         $statement->execute();
         $rv = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $rv; 
+        
     }
 
     public function createNewProgamme($dbo, $code, $title, $nos, $gl, $tl, $did) {
