@@ -223,7 +223,7 @@ $(function(){
 
     $(document).on("click","#btnAddNew",function(){
            $("#mdlpg").modal('show');
-           $("#flag").val("NEW")
+           $("#flag").val("NEW");
     });
 
     $(document).on("click","#btnSave",function(){
@@ -321,6 +321,7 @@ $(function(){
         if (isNaN(inputValue) || inputValue < minRange || inputValue > maxRange) {
             e.preventDefault();
         }
+    
     });
     
     
