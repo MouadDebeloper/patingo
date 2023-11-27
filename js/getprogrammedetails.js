@@ -296,8 +296,34 @@ $(function(){
 
     });
 
-
-
+    $(document).on("keydown", "#txtnos", function (e) {
+        // Allow: backspace, delete, tab, escape, enter, and '.' for negative numbers
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 189]) !== -1 ||
+            // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+    
+        // Ensure that it is a number and stop the keypress if not
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&
+            (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    
+        // Check if the entered value is within the specified range (e.g., between 10 and 100)
+        var inputValue = parseInt($(this).val() + String.fromCharCode(e.keyCode));
+        var minRange = 1;
+        var maxRange = 10;
+    
+        if (isNaN(inputValue) || inputValue < minRange || inputValue > maxRange) {
+            e.preventDefault();
+        }
+    });
+    
+    
 
 }); 
 
