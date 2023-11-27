@@ -13,6 +13,7 @@ $pg = new Programme;
 $result = $pg->getAllProgrammes($pdo);
 
 
-
+$json_response = json_encode($result);
+echo $json_response;
 
 ?>
